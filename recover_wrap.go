@@ -26,3 +26,10 @@ func RecoverWrap(h http.Handler) http.Handler {
      h.ServeHTTP(w, req)
   })
 }
+
+func Version(writer http.ResponseWriter, req *http.Request) {
+	res := VersionResponse{Version: "1"}
+	js, _ := json.Marshal(res)
+	writer.Header().Set("Content-Type", "application/json")
+	writer.Write(js)
+}
